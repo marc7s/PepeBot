@@ -1,0 +1,23 @@
+const { CommandHandler } = require('../../../command_handler/command-handler');
+const { CommandHandlerConfig } = require('../../../command_handler/command-handler-config');
+const { config } = require('../../../.env.js');
+
+const chConfig = new CommandHandlerConfig(
+    false,
+    true,
+    Object.values(config.bot.text_channels),
+    [
+
+    ],
+    async (message, cmd, args) => {
+        if (message.content.toLowerCase().includes('pepe')){
+            message.react('❤️');
+            return 'messageReact';
+        }
+    });
+
+const handler = new CommandHandler(chConfig);
+
+module.exports = {
+    handler
+};
