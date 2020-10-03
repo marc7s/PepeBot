@@ -12,6 +12,14 @@ const googleSpeechClient = new SpeechClient();
 const { getMessageEmote } = require('../../_helpers/emotes.js');
 const { playSong } = require('../../_helpers/music.js');
 
+const { Readable } = require('stream');
+
+class Silence extends Readable {
+  _read() {
+    this.push(Buffer.from([0xF8, 0xFF, 0xFE]));
+  }
+}
+
 const chConfig = new CommandHandlerConfig(
     false,
     false,
@@ -25,18 +33,23 @@ const chConfig = new CommandHandlerConfig(
     async (message, cmd, args) => {
         if(message.member.voice.channel){
             const connection = await message.member.voice.channel.join();
-
-            setTimeout(() => {
-                message.member.voice.channel.leave();
+            
+            const leaveAfter30 = setTimeout(() => {
+                if(!respondingOnCmd)
+                    message.member.voice.channel.leave();
             }, 30000);
+            
+            connection.on('ready', () => {
+                connection.play(new Silence(), { type: 'opus' });
+            });
             connection.on('speaking', (user, speaking) => {
-                /*
                 if (speaking) {
-                    
                     message.guild.members.fetch(user.id).then((u) => {
                         if(u.roles.cache.find(r => r.name === "Voice")){
                             console.log(`I'm listening to ${user.username}`);
+                            
                             const audioStream = connection.receiver.createStream(user, {mode: 'pcm', end: 'silence'});
+                            
                             const requestConfig = {
                                 encoding: 'LINEAR16',
                                 sampleRateHertz: 48000,
@@ -50,7 +63,7 @@ const chConfig = new CommandHandlerConfig(
                             .on('error', (err) => {
                                 console.error(err);
                                 message.channel.send('Daily Google Cloud quota exceeded');
-                                let emt = getMessageEmote(message, emotes.FeelsBadMan);
+                                let emt = getMessageEmote(message, config.bot.emotes.FeelsBadMan);
                                 message.channel.send(emt);
                                 message.member.voice.channel.leave();
                             })
@@ -59,7 +72,7 @@ const chConfig = new CommandHandlerConfig(
                                 .map(result => result.alternatives[0].transcript)
                                 .join('\n')
                                 .toLowerCase();
-                                console.log(`Transcription: ${transcription}`)
+                                console.log(`Transcription: ${transcription}`);
                                 
                                 message.channel.send(user.username + ': *' + transcription + '*');
                                 
@@ -67,8 +80,16 @@ const chConfig = new CommandHandlerConfig(
                                     let song = 'wigwalk';
                                     let songURI = __basedir + config.bot.URIs.songsURI + song + '.mp3';
                                     lastSongWigwalk = true;
-                                    await playSong(message.member.voice.channel, songURI);
-                                    return 'playSong';
+                                    
+                                    await message.member.voice.channel.leave();
+                                    
+                                    setTimeout(async () => {
+                                        clearInterval(leaveAfter30);
+                                        await playSong(message.member.voice.channel, songURI);
+                                        return 'playSong';
+                                    }, 500);
+                                    
+                                    
                                 }else if (transcription === 'leave') {
                                     message.member.voice.channel.leave();
                                 }else if (transcription === 'pepe') {
@@ -91,10 +112,11 @@ const chConfig = new CommandHandlerConfig(
                             console.log(`${user.username} does not have permission to use voice commands`);
                         }
                     });
+                    
                 } else {
                     console.log(`I stopped listening to ${user.username}`)
                 }
-                */
+                
             })
             .on('error', (err) => console.log(err));
         }else{
