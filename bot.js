@@ -23,6 +23,8 @@ var boostedHandler = require('./commands/voice/music/boosted');
 var notNerdyHandler = require('./commands/voice/music/notnerdy');
 var pushHandler = require('./commands/voice/music/push');
 var wigwalkHandler = require('./commands/voice/music/wigwalk');
+var anthemHandler = require('./commands/voice/music/anthem');
+var synthHandler = require('./commands/voice/music/synth');
 var skipHandler = require('./commands/voice/music/skip');
 var voiceHandler = require('./commands/voice/ai/voice');
 
@@ -43,6 +45,8 @@ const handlers = [
     rouletteHandler,
     boostedHandler,
     notNerdyHandler,
+    anthemHandler,
+    synthHandler,
     pushHandler,
     skipHandler,
     pingHandler,
