@@ -25,6 +25,9 @@ var pushHandler = require('./commands/voice/music/push');
 var wigwalkHandler = require('./commands/voice/music/wigwalk');
 var anthemHandler = require('./commands/voice/music/anthem');
 var synthHandler = require('./commands/voice/music/synth');
+var recursionHandler = require('./commands/voice/music/recursion');
+var visitorsHandler = require('./commands/voice/music/visitors');
+var vibeHandler = require('./commands/voice/music/vibe');
 var skipHandler = require('./commands/voice/music/skip');
 var voiceHandler = require('./commands/voice/ai/voice');
 
@@ -47,6 +50,9 @@ const handlers = [
     notNerdyHandler,
     anthemHandler,
     synthHandler,
+    recursionHandler,
+    visitorsHandler,
+    vibeHandler,
     pushHandler,
     skipHandler,
     pingHandler,

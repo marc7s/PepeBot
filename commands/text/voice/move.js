@@ -28,6 +28,14 @@ const chConfig = new CommandHandlerConfig(
                     case 'basen':
                         newChannel = config.bot.voice_channels.basen;
                         break;
+                    case 'lag1':
+                    case 'team1':
+                            newChannel = config.bot.voice_channels.team1;
+                            break;
+                    case 'lag2':
+                    case 'team2':
+                            newChannel = config.bot.voice_channels.team2;
+                            break;
                     case 'among-us':
                     case 'amongus':
                         newChannel = config.bot.voice_channels.amongUs;
