@@ -3,7 +3,7 @@ const { CommandHandlerConfig } = require('../../../command_handler/command-handl
 const { config } = require('../../../.env.js');
 
 const chConfig = new CommandHandlerConfig(
-    false,
+    true,
     true,
     Object.values(config.bot.text_channels),
     [

@@ -1,4 +1,5 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({path: path.resolve(__dirname, './.env')});
 const config = {
     "discord": {
         "token": process.env.DISCORD_TOKEN
@@ -44,7 +45,7 @@ const config = {
             'MEDDELANDE FRÅN DATATEKNOLOGSEKTIONEN IDENTIFIERAT, ÅTGÄRD 10 MIN TIMEOUT VIDTAS'
         ],
         "links": {
-            schema: "https://cloud.timeedit.net/chalmers_test/web/public/ri167XQQ545Z50Qv77034gZ6y5Y7201Q5Y85Y1.html",
+            schema: "https://cloud.timeedit.net/chalmers_covid/web/public/ri167XQQ545Z50Qv77034gZ6y5Y7201Q5Y85Y1.html",
             wigwalk: "https://www.youtube.com/watch?v=v4-3a6FUOxg"
         },
         "URIs": {
@@ -65,7 +66,7 @@ const config = {
             }
         },
         "calendar": {
-            "icsURL": "https://cloud.timeedit.net/chalmers_test/web/public/ri617Q7QYn3ZQ4Q501664875yZZQ5704.ics"
+            "icsURL": "https://cloud.timeedit.net/chalmers_covid/web/public/ri617Q7QYn3ZQ4Q501864875yZZQ5756.ics"
         }
     }
 }

@@ -62,7 +62,7 @@ const handlers = [
     scatterHandler,
     shortCommandsHandler,
     scheduleHandler,
-    voiceHandler,
+    //voiceHandler, -- Removed temporarily until permanent Google Cloud-solution in place
     bangerReactHandler,
     pepeReactHandler,
     mkHandler
