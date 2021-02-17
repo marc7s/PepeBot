@@ -27,6 +27,15 @@ const config = {
             team1: "756448642218590208",
             team2: "756448665329074206"
         },
+        "house_voice_channels": {
+            underkover: "807694861981188128",
+            general: "617769217130889376",
+            chill: "628274660672536576",
+            gtaV: "710610562794389587",
+            rocketLeague: "635930794585751586",
+            balleRojal: "780870972928163891",
+            varldensBastaSchackspelare: "789250656602292285"
+        },
         "text_channels": {
             pepeBot: "751020796410855434",
             schema: "751036640268648478",
@@ -34,6 +43,10 @@ const config = {
             music: "750644640868204564",
             voice: "751446275047817338",
             mk: "753677504707035267"
+        },
+        "house_text_channels": {
+            bot: "617771622635667456",
+            botUltra: "811717175118790716"
         },
         "mk_responses": [
             'LUGNA DIG, NU GÅR DU FÖR LÅNGT',
@@ -51,7 +64,8 @@ const config = {
         "URIs": {
             "rouletteURI": "resources/music/roulette/",
             "songsURI": "resources/music/songs/",
-            "pepeURI": "resources/pepes/"
+            "pepeURI": "resources/pepes/",
+            "frokenPeterURI": "resources/froken_peter/"
         },
         "emotes": {
             PepeSmug: 'PepeSmug',

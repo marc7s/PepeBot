@@ -1,12 +1,14 @@
 const { CommandHandler } = require('../../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../../command_handler/command-handler-config');
 const { config } = require('../../../.env.js');
+const { getChannelFromText } = require('../../_helpers/voice.js');
 
 const chConfig = new CommandHandlerConfig(
     false,
     false,
     [
-        config.bot.text_channels.voice
+        config.bot.text_channels.voice,
+        config.bot.house_text_channels.botUltra
     ],
     [
         'move'
@@ -14,40 +16,27 @@ const chConfig = new CommandHandlerConfig(
     async (message, cmd, args) => {
         if(message.member.voice.channel){
             let newChannel = config.bot.voice_channels.oklart;
-            if(args.length >= 1){
-                switch (args[0].toLowerCase()){
-                    case 'plugg1':
-                        newChannel = config.bot.voice_channels.plugg1;
-                        break;
-                    case 'plugg2':
-                        newChannel = config.bot.voice_channels.plugg2;
-                        break;
-                    case 'oklart':
-                        newChannel = config.bot.voice_channels.oklart;
-                        break;
-                    case 'basen':
-                        newChannel = config.bot.voice_channels.basen;
-                        break;
-                    case 'lag1':
-                    case 'team1':
-                            newChannel = config.bot.voice_channels.team1;
-                            break;
-                    case 'lag2':
-                    case 'team2':
-                            newChannel = config.bot.voice_channels.team2;
-                            break;
-                    case 'among-us':
-                    case 'amongus':
-                        newChannel = config.bot.voice_channels.amongUs;
-                        break;
-                }
-            }
             let old_vc = message.member.voice.channel;
+            if(args.length == 1){
+                newChannel = getChannelFromText(args[0]);
+            }else if(args.length == 2){
+                oldChannel = getChannelFromText(args[0]);
+                newChannel = getChannelFromText(args[1]);
+                old_vc = message.guild.channels.cache.get(oldChannel);
+            }
+                
             let new_vc = message.guild.channels.cache.get(newChannel);
             for(const [memberID, member] of old_vc.members){
                 member.voice.setChannel(newChannel);
             }
-            let msg = 'Moved members from ' + old_vc.name + ' to ' + new_vc.name;
+            
+            let msg = '';
+            if(new_vc != undefined && old_vc != undefined){
+                msg = 'Moved members from ' + old_vc.name + ' to ' + new_vc.name;
+            }
+            else{
+                msg = 'Could not find voice channel';
+            }
             message.channel.send(msg);
             console.log(msg);
             return 'movedMembers';

@@ -1,7 +1,7 @@
 function getMessageEmote(message, emoteName){
     let emote = getReactionEmote(message, emoteName);
-    if(emote === false){
-        return false;
+    if(emote == ''){
+        return '';
     }else{
         return '<:' + emote.name + ':' + emote.id + '>';
     }
@@ -12,7 +12,7 @@ function getReactionEmote(message, emoteName){
     if(emote)
         return emote;
     else
-        return false;
+        return '';
 }
 
 module.exports = {

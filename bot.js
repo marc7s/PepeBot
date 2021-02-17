@@ -29,6 +29,7 @@ var recursionHandler = require('./commands/voice/music/recursion');
 var visitorsHandler = require('./commands/voice/music/visitors');
 var vibeHandler = require('./commands/voice/music/vibe');
 var skipHandler = require('./commands/voice/music/skip');
+var frokenPeterHandler = require('./commands/voice/misc/froken_peter');
 var voiceHandler = require('./commands/voice/ai/voice');
 
 var bangerReactHandler = require('./commands/text/global/bangerReact');
@@ -54,6 +55,7 @@ const handlers = [
     visitorsHandler,
     vibeHandler,
     pushHandler,
+    frokenPeterHandler,
     skipHandler,
     pingHandler,
     moveHandler,
