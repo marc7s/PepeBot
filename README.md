@@ -18,4 +18,4 @@ node bot.js
 ```
 
 ## Contributing
-Feature requests are welcome, but the project not meant to grow into something generic or distributable. It was created for a specific use case and will continue to receive updates for this specific use case without major consideration to scalability or adaptation.
+Feature requests are welcome, but the project was not meant to grow into something generic or distributable. It was created for a specific use case and will continue to receive updates for this specific use case without major consideration to scalability or adaptation.

@@ -20,13 +20,10 @@ var moveHandler = require('../commands/text/voice/move');
 var leaveHandler = require('../commands/text/voice/leave');
 var teamsHandler = require('../commands/text/voice/teams');
 var scatterHandler = require('../commands/text/voice/scatter');
-var lowlifeHandler = require('../commands/text/voice/lowlife');
 
 var mkHandler = require('../commands/text/mk');
 var shortCommandsHandler = require('../commands/text/shortCommands');
 var scheduleHandler = require('../commands/text/schedule');
-
-const env = require('../.env.js');
 
 class HandlerConfig{
     
@@ -47,7 +44,6 @@ class HandlerConfig{
             leaveHandler,
             teamsHandler,
             scatterHandler,
-            lowlifeHandler,
             shortCommandsHandler,
             //voiceHandler, -- Removed temporarily until permanent Google Cloud-solution in place
             bangerReactHandler,
