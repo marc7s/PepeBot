@@ -67,7 +67,6 @@ class HandlerConfig{
             leaveHandler,
             teamsHandler,
             scatterHandler,
-            lowlifeHandler,
             shortCommandsHandler,
             scheduleHandler,
             //voiceHandler, -- Removed temporarily until permanent Google Cloud-solution in place
