@@ -9,8 +9,8 @@ const chConfig = new CommandHandlerConfig(
     false,
     false,
     [
-        config.bot.text_channels.music,
-        config.bot.house_text_channels.bot
+        config.guilds.frukost.text_channels.music,
+        config.guilds.house.text_channels.bot
     ],
     [
         'vibe',

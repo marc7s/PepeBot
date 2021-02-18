@@ -10,10 +10,10 @@ const chConfig = new CommandHandlerConfig(
     false,
     false,
     [
-        config.bot.text_channels.pepeBot,
-        config.bot.text_channels.music,
-        config.bot.house_text_channels.bot,
-        config.bot.house_text_channels.botUltra
+        config.guilds.frukost.text_channels.pepeBot,
+        config.guilds.frukost.text_channels.music,
+        config.guilds.house.text_channels.bot,
+        config.guilds.house.text_channels.botUltra
     ],
     [
         'synka',
@@ -22,6 +22,7 @@ const chConfig = new CommandHandlerConfig(
     async (message, cmd, args) => {
         
         if(message.member.voice.channel){
+            message.react('🕓');
             let now = new Date();
             let timeparts = [now.getHours(), now.getMinutes(), now.getSeconds()];
             

@@ -9,7 +9,7 @@ const chConfig = new CommandHandlerConfig(
     true,
     true,
     [
-        config.bot.text_channels.wigwalk
+        config.guilds.frukost.text_channels.wigwalk
     ],
     [
 

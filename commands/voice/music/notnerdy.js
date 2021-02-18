@@ -9,7 +9,7 @@ const chConfig = new CommandHandlerConfig(
     false,
     false,
     [
-        config.bot.text_channels.music
+        config.guilds.frukost.text_channels.music
     ],
     [
         'chalmers',

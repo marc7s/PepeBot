@@ -7,8 +7,8 @@ const chConfig = new CommandHandlerConfig(
     false,
     false,
     [
-        config.bot.text_channels.voice,
-        config.bot.house_text_channels.botUltra
+        config.guilds.frukost.text_channels.voice,
+        config.guilds.house.text_channels.botUltra
     ],
     [
         'move'

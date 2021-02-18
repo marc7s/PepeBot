@@ -8,7 +8,7 @@ const chConfig = new CommandHandlerConfig(
     false,
     false,
     [
-        config.bot.text_channels.schema
+        config.guilds.frukost.text_channels.schema
     ],
     [
         'schema',

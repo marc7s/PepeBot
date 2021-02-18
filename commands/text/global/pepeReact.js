@@ -5,7 +5,8 @@ const { config } = require('../../../.env.js');
 const chConfig = new CommandHandlerConfig(
     true,
     true,
-    Object.values(config.bot.text_channels),
+    Object.values(config.guilds.frukost.text_channels)
+        .concat(Object.values(config.guilds.house.text_channels)),
     [
 
     ],

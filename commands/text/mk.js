@@ -6,7 +6,7 @@ const chConfig = new CommandHandlerConfig(
     true,
     true,
     [
-        config.bot.text_channels.mk
+        config.guilds.frukost.text_channels.mk
     ],
     [
     ],

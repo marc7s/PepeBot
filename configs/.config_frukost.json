@@ -1,0 +1,43 @@
+{
+    "voice_channels": {
+        "oklart": "747185243642921004",
+        "plugg1": "747223273695346738",
+        "plugg2": "747389241654509609",
+        "amongUs": "755702228358004859",
+        "basen": "756134809692274729",
+        "team1": "756448642218590208",
+        "team2": "756448665329074206"
+    },
+    "text_channels": {
+        "pepeBot": "751020796410855434",
+        "schema": "751036640268648478",
+        "wigwalk": "747218789866799135",
+        "music": "750644640868204564",
+        "voice": "751446275047817338",
+        "mk": "753677504707035267"
+    },
+    "mk_responses": [
+        "LUGNA DIG, NU GÅR DU FÖR LÅNGT",
+        "DET DÄR ÄR INTE OKEJ",
+        "MOT REGLERNA, STÄNG AV",
+        "INGET SÅNT I CHATTEN",
+        "TOO FAR, STÄNG NER D-SEKTIONEN",
+        "HAN SADE DET, RING POLIS",
+        "MEDDELANDE FRÅN DATATEKNOLOGSEKTIONEN IDENTIFIERAT, ÅTGÄRD 10 MIN TIMEOUT VIDTAS"
+    ],
+    "emotes": {
+        "PepeSmug": "PepeSmug",
+        "HYPERDANSGAME": "HYPERDANSGAME",
+        "Sadge": "Sadge",
+        "FeelsBadMan": "FeelsBadMan"
+    },
+    "presence": {
+        "activity": {
+            "name": "nakna pepes",
+            "type": "WATCHING"
+        }
+    },
+    "calendar": {
+        "icsURL": "https://cloud.timeedit.net/chalmers_covid/web/public/ri617Q7QYn3ZQ4Q501864875yZZQ5756.ics"
+    }
+}
