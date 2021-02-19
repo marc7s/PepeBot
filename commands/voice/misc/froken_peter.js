@@ -12,6 +12,7 @@ const chConfig = new CommandHandlerConfig(
     [
         config.guilds.frukost.text_channels.pepeBot,
         config.guilds.frukost.text_channels.music,
+        config.guilds.frukost.text_channels.voice,
         config.guilds.house.text_channels.bot,
         config.guilds.house.text_channels.botUltra
     ],
@@ -38,32 +39,38 @@ const chConfig = new CommandHandlerConfig(
             let fallbackSample = 'fallback.wav';
             
             let files = [];
+            let skip = false;
 
             if(Math.random() > 0.35){
                 let sampleName = beforeFileNames[Math.floor(Math.random() * beforeFileNames.length)];
                 files.push(beforeDir + sampleName);
-            }
-
-            timeparts.forEach(part => {
-                part = ("00" + part).slice(-2);
-                let index = numbers.indexOf(part);
-                if(index >= 0){
-                    files.push(sampleDir + numberFileNames[index]);
-                }else{
-                    let digits = part.split('');
-                    digits.forEach(digit => {
-                        index = numbers.indexOf(digit);
-                        if(index >= 0){
-                            files.push(sampleDir + numberFileNames[index]);
-                        }else{
-                            files.push(sampleDir + fallbackSample);
-                            console.error(digit + " not found in available samples");
-                        }
-                    });
+                if(sampleName == 'skip.wav'){
+                    skip = true;
                 }
-            });
-
-            files.push(afterDir + afterFileNames[Math.floor(Math.random() * beforeFileNames.length)]);
+            }
+            
+            if(!skip){
+                timeparts.forEach(part => {
+                    part = ("00" + part).slice(-2);
+                    let index = numbers.indexOf(part);
+                    if(index >= 0){
+                        files.push(sampleDir + numberFileNames[index]);
+                    }else{
+                        let digits = part.split('');
+                        digits.forEach(digit => {
+                            index = numbers.indexOf(digit);
+                            if(index >= 0){
+                                files.push(sampleDir + numberFileNames[index]);
+                            }else{
+                                files.push(sampleDir + fallbackSample);
+                                console.error(digit + " not found in available samples");
+                            }
+                        });
+                    }
+                });
+    
+                files.push(afterDir + afterFileNames[Math.floor(Math.random() * afterFileNames.length)]);
+            }
 
             lastSongWigwalk = false;
             await playSamples(message.member.voice.channel, files);

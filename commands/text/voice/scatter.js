@@ -13,9 +13,20 @@ const chConfig = new CommandHandlerConfig(
     ],
     async (message, cmd, args) => {
         let old_vc = message.member.voice.channel;
-        let vcKeys = Object.keys(config.bot.voice_channels);
+        let channels = [];
+
+        if(message.guild.id == config.guilds.frukost.config.id){
+            channels = config.guilds.frukost.voice_channels;
+        }else if(message.guild.id == config.guilds.house.config.id){
+            channels = config.guilds.house.voice_channels;
+        }else{
+            return null;
+        }
+
+        let vcKeys = Object.keys(channels);
+        
         for(const [memberID, member] of old_vc.members){
-            let randChannel = config.bot.voice_channels[vcKeys[vcKeys.length * Math.random() << 0]];
+            let randChannel = channels[vcKeys[vcKeys.length * Math.random() << 0]];
             member.voice.setChannel(randChannel);
         }
         let msg = 'Moved members to random channels';

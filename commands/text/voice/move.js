@@ -15,7 +15,13 @@ const chConfig = new CommandHandlerConfig(
     ],
     async (message, cmd, args) => {
         if(message.member.voice.channel){
-            let newChannel = config.bot.voice_channels.oklart;
+            let newChannel = null;
+            if(message.guild.id == config.guilds.frukost.config.id){
+                newChannel = config.guilds.frukost.voice_channels.oklart;
+            }else if(message.guild.id == config.guilds.house.config.id){
+                newChannel = config.guilds.house.voice_channels.general;
+            }
+            
             let old_vc = message.member.voice.channel;
             if(args.length == 1){
                 newChannel = getChannelFromText(args[0]);

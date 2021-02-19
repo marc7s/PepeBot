@@ -3,49 +3,49 @@ const path = require('path');
 const fs = require('fs');
 
 function getChannelFromText(text){
-    let channel = config.bot.voice_channels.oklart;
+    let channel = null;
     switch (text.toLowerCase()){
         case 'plugg1':
-            channel = config.bot.voice_channels.plugg1;
+            channel = config.guilds.frukost.voice_channels.plugg1;
             break;
         case 'plugg2':
-            channel = config.bot.voice_channels.plugg2;
+            channel = config.guilds.frukost.voice_channels.plugg2;
             break;
         case 'oklart':
-            channel = config.bot.voice_channels.oklart;
+            channel = config.guilds.frukost.voice_channels.oklart;
             break;
         case 'basen':
-            channel = config.bot.voice_channels.basen;
+            channel = config.guilds.frukost.voice_channels.basen;
             break;
         case 'lag1':
         case 'team1':
-                channel = config.bot.voice_channels.team1;
+                channel = config.guilds.frukost.voice_channels.team1;
                 break;
         case 'lag2':
         case 'team2':
-                channel = config.bot.voice_channels.team2;
+                channel = config.guilds.frukost.voice_channels.team2;
                 break;
         case 'among-us':
         case 'amongus':
-            channel = config.bot.voice_channels.amongUs;
+            channel = config.guilds.frukost.voice_channels.amongUs;
             break;
         case 'chill':
-            channel = config.bot.house_voice_channels.chill;
+            channel = config.guilds.house.voice_channels.chill;
             break;
         case 'general':
-            channel = config.bot.house_voice_channels.general;
+            channel = config.guilds.house.voice_channels.general;
             break;
         case 'ballerojal':
         case 'balle':
-            channel = config.bot.house_voice_channels.balleRojal;
+            channel = config.guilds.house.voice_channels.balleRojal;
             break;
         case 'rocketleague':
         case 'rl':
         case 'rocket':
-            channel = config.bot.house_voice_channels.rocketLeague;
+            channel = config.guilds.house.voice_channels.rocketLeague;
             break;
         case 'schack':
-            channel = config.bot.house_voice_channels.varldensBastaSchackspelare;
+            channel = config.guilds.house.voice_channels.varldensBastaSchackspelare;
             break;
     }
     return channel;
@@ -69,7 +69,31 @@ async function playSamples(channel, samples){
     });
 }
 
+function getUserIdFromMention(mention) {
+	if (!mention) return;
+
+	if (mention.startsWith('<@') && mention.endsWith('>')) {
+		mention = mention.slice(2, -1);
+
+		if (mention.startsWith('!')) {
+			mention = mention.slice(1);
+		}
+        return mention;
+	}
+}
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
 module.exports = {
     getChannelFromText,
-    playSamples
+    playSamples,
+    getUserIdFromMention,
+    shuffleArray
 };

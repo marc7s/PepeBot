@@ -21,10 +21,10 @@ const chConfig = new CommandHandlerConfig(
         let team1 = members.splice(0, half);
         let team2 = members.splice(-half);
         for(member of team1){
-            member.voice.setChannel(config.bot.voice_channels.team1);
+            member.voice.setChannel(config.guilds.frukost.voice_channels.team1);
         }
         for(member of team2){
-            member.voice.setChannel(config.bot.voice_channels.team2);
+            member.voice.setChannel(config.guilds.frukost.voice_channels.team2);
         }
         let msg = 'Moved members to random teams';
         message.channel.send(msg);

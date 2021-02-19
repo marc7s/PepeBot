@@ -69,7 +69,8 @@ const config = {
             "rouletteURI": "resources/music/roulette/",
             "songsURI": "resources/music/songs/",
             "pepeURI": "resources/pepes/",
-            "frokenPeterURI": "resources/froken_peter/"
+            "frokenPeterURI": "resources/froken_peter/",
+            "lowlifeURI": "resources/peter/lowlife/"
         },
         "links": {
             "schema": "https://cloud.timeedit.net/chalmers_covid/web/public/ri167XQQ545Z50Qv77034gZ6y5Y7201Q5Y85Y1.html",
