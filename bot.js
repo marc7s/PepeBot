@@ -30,7 +30,7 @@ bot.once('ready', function (evt) {
     logger.info('Logged in as: ');
     logger.info(bot.user.username + ' - (' + bot.user.id + ')');
 
-    //bot.user.setPresence(env.config.bot.presence);
+    bot.user.setPresence(env.config.bot.presence);
 });
 
 bot.login(env.config.discord.token);
@@ -47,21 +47,8 @@ bot.on('message', message => {
             let firstChar = message.content.substring(0, cmdCharLen);
             let cmd = args[0];
             args.shift();
-            
-            //let handlers = guild.config.handler;
-            //console.log(handlers);
 
-            checkHandlers(firstChar, cmd, args, message, guild);
-
-            /*
-            for(let cmdHandler of guild.handlers){
-                actions.push(await cmdHandler.handler.handle(firstChar, cmd, args, message));
-            }*/
-            /*
-            if((!actions.includes('playSong') && !actions.includes('skipSong') && !actions.includes('leaveChannel') && !actions.includes('movedMembers')) && wigwalkHandler.handler.config.channels.includes(message.channel.id))
-                await wigwalkHandler.handler.handle(firstChar, cmd, args, message);
-                */
-            
+            checkHandlers(firstChar, cmd, args, message, guild);            
         }
     });
 });

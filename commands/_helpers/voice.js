@@ -47,6 +47,9 @@ function getChannelFromText(text){
         case 'schack':
             channel = config.guilds.house.voice_channels.varldensBastaSchackspelare;
             break;
+        case 'cs':
+            channel = config.guilds.house.voice_channels.cs;
+            break;
     }
     return channel;
 }

@@ -6,7 +6,8 @@ const chConfig = new CommandHandlerConfig(
     false,
     false,
     [
-        config.guilds.frukost.text_channels.voice
+        config.guilds.frukost.text_channels.voice,
+        config.guilds.house.text_channels.botUltra
     ],
     [
         'scatter'

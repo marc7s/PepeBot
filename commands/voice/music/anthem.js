@@ -9,7 +9,9 @@ const chConfig = new CommandHandlerConfig(
     false,
     false,
     [
-        config.guilds.frukost.text_channels.music
+        config.guilds.frukost.text_channels.music,
+        config.guilds.house.text_channels.bot,
+        config.guilds.house.text_channels.botUltra
     ],
     [
         'anthem',
@@ -21,7 +23,7 @@ const chConfig = new CommandHandlerConfig(
             let song = 'Shadilay';
             let songURI = __basedir + config.bot.URIs.songsURI + song + '.mp3';
 
-            lastSongWigwalk = true;
+            lastSongWigwalk = false;
 
             message.channel.send('🎵 ' + song + ' 🎵');
             

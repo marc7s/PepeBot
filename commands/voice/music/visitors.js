@@ -10,7 +10,8 @@ const chConfig = new CommandHandlerConfig(
     false,
     [
         config.guilds.frukost.text_channels.music,
-        config.guilds.house.text_channels.bot
+        config.guilds.house.text_channels.bot,
+        config.guilds.house.text_channels.botUltra
     ],
     [
         'visitors',

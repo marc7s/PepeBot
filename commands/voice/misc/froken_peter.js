@@ -76,7 +76,7 @@ const chConfig = new CommandHandlerConfig(
             await playSamples(message.member.voice.channel, files);
             return 'playSong';
         }else{
-            let emt  = getMessageEmote(message, config.bot.emotes.Sadge);
+            let emt  = getMessageEmote(message, config.guilds.frukost.emotes.Sadge);
             message.channel.send('not in voice channel ' + emt);
         }
     });

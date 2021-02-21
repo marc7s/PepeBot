@@ -75,6 +75,12 @@ const config = {
         "links": {
             "schema": "https://cloud.timeedit.net/chalmers_covid/web/public/ri167XQQ545Z50Qv77034gZ6y5Y7201Q5Y85Y1.html",
             "wigwalk": "https://www.youtube.com/watch?v=v4-3a6FUOxg"
+        },
+        "presence": {
+            "activity": {
+                "name": "nakna pepes",
+                "type": "WATCHING"
+            }
         }
     },
     "guilds": guilds

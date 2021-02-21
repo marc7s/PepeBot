@@ -11,6 +11,8 @@ const chConfig = new CommandHandlerConfig(
     [
         config.guilds.frukost.text_channels.voice,
         config.guilds.frukost.text_channels.pepeBot,
+        config.guilds.frukost.text_channels.music,
+        config.guilds.house.text_channels.bot,
         config.guilds.house.text_channels.botUltra
     ],
     [
