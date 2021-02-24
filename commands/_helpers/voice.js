@@ -2,74 +2,26 @@ const { config } = require('../../.env.js');
 const path = require('path');
 const fs = require('fs');
 
-function getChannelFromText(text){
-    let channel = null;
-    switch (text.toLowerCase()){
-        case 'plugg1':
-            channel = config.guilds.frukost.voice_channels.plugg1;
-            break;
-        case 'plugg2':
-            channel = config.guilds.frukost.voice_channels.plugg2;
-            break;
-        case 'oklart':
-            channel = config.guilds.frukost.voice_channels.oklart;
-            break;
-        case 'basen':
-            channel = config.guilds.frukost.voice_channels.basen;
-            break;
-        case 'lag1':
-        case 'team1':
-                channel = config.guilds.frukost.voice_channels.team1;
-                break;
-        case 'lag2':
-        case 'team2':
-                channel = config.guilds.frukost.voice_channels.team2;
-                break;
-        case 'among-us':
-        case 'amongus':
-            channel = config.guilds.frukost.voice_channels.amongUs;
-            break;
-        case 'chill':
-            channel = config.guilds.house.voice_channels.chill;
-            break;
-        case 'general':
-            channel = config.guilds.house.voice_channels.general;
-            break;
-        case 'ballerojal':
-        case 'balle':
-            channel = config.guilds.house.voice_channels.balleRojal;
-            break;
-        case 'rocketleague':
-        case 'rl':
-        case 'rocket':
-            channel = config.guilds.house.voice_channels.rocketLeague;
-            break;
-        case 'schack':
-            channel = config.guilds.house.voice_channels.varldensBastaSchackspelare;
-            break;
-        case 'cs':
-            channel = config.guilds.house.voice_channels.cs;
-            break;
-    }
-    return channel;
-}
-
 async function playSamples(channel, samples){
-    channel.join().then(connection => {
-        let sampleURI = path.win32.normalize(samples.shift());
-        if(fs.existsSync(sampleURI)){
-            const dispatcher = connection.play(sampleURI).on('finish', async () => {
-                if(samples.length > 0){
-                    await playSamples(channel, samples);
-                }else{
-                    dispatcher.destroy();
-                    connection.disconnect();
-                }
-            }).on('error', console.error);
-        }else{
-            console.error('Error: Sample path does not exist');
-        }     
-    });
+    if(channel.joinable){
+        channel.join().then(connection => {
+            let sampleURI = path.win32.normalize(samples.shift());
+            if(fs.existsSync(sampleURI)){
+                const dispatcher = connection.play(sampleURI).on('finish', async () => {
+                    if(samples.length > 0){
+                        await playSamples(channel, samples);
+                    }else{
+                        dispatcher.destroy();
+                        connection.disconnect();
+                    }
+                }).on('error', console.error);
+            }else{
+                console.error('Error: Sample path does not exist');
+            }     
+        });
+    }else{
+        console.error('Error. No permission to join ' + channel.name);
+    }
 }
 
 function getUserIdFromMention(mention) {
@@ -94,9 +46,30 @@ function shuffleArray(array) {
     }
 }
 
+function isChannel(channelName, needle){
+    return channelCompareString(channelName) === channelCompareString(needle);
+}
+
+function channelCompareString(channel){
+    return channel.replace(/\s+/, '').toLowerCase();
+}
+
+function getChannel(guild, needle, type){
+    return guild.channels.cache.find(channel => {
+        return channel.type == type && isChannel(channel.name, needle);
+    });
+}
+
+function getChannels(guild, type){
+    return guild.channels.cache.filter(channel => {
+        return channel.type == type;
+    });
+}
+
 module.exports = {
-    getChannelFromText,
     playSamples,
     getUserIdFromMention,
-    shuffleArray
+    shuffleArray,
+    getChannel,
+    getChannels
 };

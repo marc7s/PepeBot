@@ -19,6 +19,7 @@ const chConfig = new CommandHandlerConfig(
         'lowlife'
     ],
     async (message, cmd, args) => {
+        let msg = '';
         if(message.member.voice.channel){
             if(args.length >= 1){
                 let targetMention = args[0];
@@ -40,8 +41,6 @@ const chConfig = new CommandHandlerConfig(
                         const flamesDir = lowlifeDir + '/lines/';
                         const flames = readdirSync(flamesDir);
                         const greetingFileName = '/greeting/halla_lowlifers.wav';
-        
-                        const oldChannel = target.voice.channel;
     
                         await target.voice.setChannel(targetChannel);
                         let files = [];
@@ -61,29 +60,20 @@ const chConfig = new CommandHandlerConfig(
                         playSamples(message.guild.channels.cache.get(targetChannel), files);
                         return 'playSong';
                     }else{
-                        let msg = 'Target not connected to voice channel';
-                        message.channel.send(msg);
-                        console.log(msg);
-                        return null;
+                        msg = 'Target not connected to voice channel';
                     }
                 }else{
-                    let msg = 'Could not find user';
-                    message.channel.send(msg);
-                    console.log(msg);
-                    return null;
+                    msg = 'Could not find user';
                 }
             }else{
-                let msg = 'Missing argument, select a target';
-                message.channel.send(msg);
-                console.log(msg);
-                return null;
+                msg = 'Missing argument, select a target';
             }
         }else{
-            let msg = 'Not in voice channel';
-            message.channel.send(msg);
-            console.log(msg);
-            return null;
+            msg = 'Not in voice channel';
         }
+        message.channel.send(msg);
+        console.log(msg);
+        return 'playSong';
     });
 
 const handler = new CommandHandler(chConfig);
