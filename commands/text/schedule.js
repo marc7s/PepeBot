@@ -55,6 +55,7 @@ const chConfig = new CommandHandlerConfig(
                     break;
             }
         });
+        console.log('Showed schedule');
         return 'messageSent';
     });
 

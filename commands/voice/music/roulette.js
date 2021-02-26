@@ -10,7 +10,7 @@ const chConfig = new CommandHandlerConfig(
     false,
     false,
     [
-        config.guilds.frukost.text_channels.music,
+        config.guilds.frukost.text_channels.bot,
         config.guilds.house.text_channels.bot,
         config.guilds.house.text_channels.botUltra
     ],
@@ -36,7 +36,7 @@ const chConfig = new CommandHandlerConfig(
             await playSong(message.member.voice.channel, songURI);
             return 'playSong';
         }else{
-            let emt  = getMessageEmote(message, config.bot.emotes.Sadge);
+            let emt  = getMessageEmote(message, config.guilds.frukost.emotes.Sadge);
             message.channel.send('not in voice channel ' + emt);
         }
     });

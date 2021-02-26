@@ -11,6 +11,7 @@ const chConfig = new CommandHandlerConfig(
     false,
     [
         config.guilds.frukost.text_channels.schema,
+        config.guilds.frukost.text_channels.bot,
         config.guilds.frukost.text_channels.pepeBot
     ],
     [
@@ -28,13 +29,23 @@ const chConfig = new CommandHandlerConfig(
             '.play/.roulette',
             '.stop/.s',
             '.boost/.boosted',
+            '.chalmers/.intenördigt',
+            '.visitors',
+            '.git/.push',
+            '.recursion/.haskell',
+            '.synth',
+            '.vibe',
             '.pepe',
             '.schema/.kurser [vecka/imorgon]',
             '.vecka',
             '.ping',
             '.sektion',
             '.färg',
-            '.skyddshelgon'
+            '.skyddshelgon',
+            '.synka',
+            '.lowlife [@Member]',
+            '.move [ToChannel]/.move [FromChannel] [ToChannel]',
+            '.teams'
         ];
         switch(cmd) {
             case 'schemalänk':

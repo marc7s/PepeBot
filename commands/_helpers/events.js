@@ -3,7 +3,7 @@ const { config } = require('../../.env.js');
 const { getMessageEmote } = require('./emotes.js');
 
 async function getEvents(eventArgs){
-    let events = await ical.async.fromURL(config.bot.calendar.icsURL);
+    let events = await ical.async.fromURL(config.guilds.frukost.calendar.icsURL);
     let today = new Date();
     let tomorrow_start = new Date()
     let tomorrow_end = new Date();
@@ -64,7 +64,7 @@ function formatDayCourses(message, heading, courses, custom_date = false, compre
         }
     }else{
         msg += '\n`Inga kurser denna dag` ';
-        let emt = getMessageEmote(message, config.bot.emotes.PepeSmug);
+        let emt = getMessageEmote(message, config.guilds.frukost.emotes.PepeSmug);
         if(emt !== false)
             msg += emt;
     }

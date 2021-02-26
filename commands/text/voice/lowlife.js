@@ -11,7 +11,7 @@ const chConfig = new CommandHandlerConfig(
     [
         config.guilds.frukost.text_channels.voice,
         config.guilds.frukost.text_channels.pepeBot,
-        config.guilds.frukost.text_channels.music,
+        config.guilds.frukost.text_channels.bot,
         config.guilds.house.text_channels.bot,
         config.guilds.house.text_channels.botUltra
     ],
@@ -23,13 +23,20 @@ const chConfig = new CommandHandlerConfig(
         if(message.member.voice.channel){
             if(args.length >= 1){
                 let targetMention = args[0];
+                let move = true;
+                if(targetMention == 'here'){
+                    move = false;
+                }
                 let userId = getUserIdFromMention(targetMention);
                 let target = message.guild.members.cache.get(userId);
 
-                if(target != undefined){
-                    if(target.voice.channel){
+                if(!move || target != undefined){
+                    if(!move || target.voice.channel){
                         let targetChannel = null;
-                        if(message.guild.id == config.guilds.frukost.config.id){
+                        if(!move){
+                            targetChannel = message.member.voice.channel.id;
+                        }
+                        else if(message.guild.id == config.guilds.frukost.config.id){
                             targetChannel = config.guilds.frukost.voice_channels.utskallning;
                         }else if(message.guild.id == config.guilds.house.config.id){
                             targetChannel = config.guilds.house.voice_channels.cs;
@@ -40,9 +47,17 @@ const chConfig = new CommandHandlerConfig(
                         const lowlifeDir = __basedir + config.bot.URIs.lowlifeURI;
                         const flamesDir = lowlifeDir + '/lines/';
                         const flames = readdirSync(flamesDir);
-                        const greetingFileName = '/greeting/halla_lowlifers.wav';
-    
-                        await target.voice.setChannel(targetChannel);
+                        const greetingFileName = '/greeting/hallaLowlifers.wav';
+                        
+                        let targetName = '';
+                        
+                        if(move){
+                            await target.voice.setChannel(targetChannel);
+                            targetName = target.displayName;
+                        }else{
+                            targetName = 'themselves';
+                        }
+                        
                         let files = [];
                         
         
@@ -58,6 +73,7 @@ const chConfig = new CommandHandlerConfig(
                         message.react('📢');
     
                         playSamples(message.guild.channels.cache.get(targetChannel), files);
+                        console.log(message.member.displayName + ' scolded ' + targetName);
                         return 'playSong';
                     }else{
                         msg = 'Target not connected to voice channel';

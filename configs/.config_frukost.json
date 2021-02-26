@@ -1,6 +1,7 @@
 {
     "voice_channels": {
         "oklart": "747185243642921004",
+        "plugg0": "813698974179262475",
         "plugg1": "747223273695346738",
         "plugg2": "747389241654509609",
         "amongUs": "755702228358004859",
@@ -13,7 +14,7 @@
         "pepeBot": "751020796410855434",
         "schema": "751036640268648478",
         "wigwalk": "747218789866799135",
-        "music": "750644640868204564",
+        "bot": "750644640868204564",
         "voice": "751446275047817338",
         "mk": "753677504707035267"
     },
@@ -33,6 +34,6 @@
         "FeelsBadMan": "FeelsBadMan"
     },
     "calendar": {
-        "icsURL": "https://cloud.timeedit.net/chalmers_covid/web/public/ri617Q7QYn3ZQ4Q501864875yZZQ5756.ics"
+        "icsURL": "https://cloud.timeedit.net/chalmers/web/public/ri6YQ3ygZ05ZZnQ1X75v5Y075045x4Z66g080YQQ61766Q5.ics"
     }
 }

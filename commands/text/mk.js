@@ -12,7 +12,7 @@ const chConfig = new CommandHandlerConfig(
     ],
     async (message, cmd, args) => {
         if(message.content.toLowerCase().includes('data')){
-            let excuse = config.bot.mk_responses[Math.floor(Math.random() * config.bot.mk_responses.length)];
+            let excuse = config.guilds.frukost.mk_responses[Math.floor(Math.random() * config.guilds.frukost.mk_responses.length)];
             message.react('😡');
             message.reply(excuse);
             return 'messageSent';

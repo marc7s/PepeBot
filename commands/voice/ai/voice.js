@@ -63,7 +63,7 @@ const chConfig = new CommandHandlerConfig(
                             .on('error', (err) => {
                                 console.error(err);
                                 message.channel.send('Daily Google Cloud quota exceeded');
-                                let emt = getMessageEmote(message, config.bot.emotes.FeelsBadMan);
+                                let emt = getMessageEmote(message, config.guilds.frukost.emotes.FeelsBadMan);
                                 message.channel.send(emt);
                                 message.member.voice.channel.leave();
                             })
