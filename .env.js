@@ -70,7 +70,8 @@ const config = {
             "songsURI": "resources/music/songs/",
             "pepeURI": "resources/pepes/",
             "frokenPeterURI": "resources/froken_peter/",
-            "lowlifeURI": "resources/peter/lowlife/"
+            "lowlifeURI": "resources/peter/lowlife/",
+            "peterURI": "resources/peter/"
         },
         "links": {
             "schema": "https://cloud.timeedit.net/chalmers/web/public/ri1Y93ygZ05ZZQQ1X75v5Y075Q45x4966g080YQQ617.html",

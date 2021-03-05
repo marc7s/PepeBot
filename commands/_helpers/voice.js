@@ -66,10 +66,23 @@ function getChannels(guild, type){
     });
 }
 
+function isRestrictedChannel(channel){
+    let isPrivate = false;
+
+    for(let [id, perm] of channel.permissionOverwrites){
+        if(perm.deny.has("VIEW_CHANNEL")){
+            isPrivate = true;
+            break;
+        }
+    }
+    return isPrivate;
+}
+
 module.exports = {
     playSamples,
     getUserIdFromMention,
     shuffleArray,
     getChannel,
-    getChannels
+    getChannels,
+    isRestrictedChannel
 };

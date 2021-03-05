@@ -8,6 +8,8 @@ var synthHandler = require('../commands/voice/music/synth');
 var recursionHandler = require('../commands/voice/music/recursion');
 var visitorsHandler = require('../commands/voice/music/visitors');
 var vibeHandler = require('../commands/voice/music/vibe');
+var introHandler = require('../commands/voice/music/intro');
+var coverHandler = require('../commands/voice/music/cover');
 var skipHandler = require('../commands/voice/music/skip');
 var frokenPeterHandler = require('../commands/voice/misc/froken_peter');
 var voiceHandler = require('../commands/voice/ai/voice');
@@ -37,6 +39,8 @@ class HandlerConfig{
             recursionHandler,
             visitorsHandler,
             vibeHandler,
+            introHandler,
+            coverHandler,
             pushHandler,
             frokenPeterHandler,
             skipHandler,
@@ -61,6 +65,8 @@ class HandlerConfig{
             recursionHandler,
             visitorsHandler,
             vibeHandler,
+            introHandler,
+            coverHandler,
             pushHandler,
             frokenPeterHandler,
             skipHandler,

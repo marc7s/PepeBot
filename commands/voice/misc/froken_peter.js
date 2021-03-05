@@ -53,20 +53,26 @@ const chConfig = new CommandHandlerConfig(
                 timeparts.forEach(part => {
                     part = ("00" + part).slice(-2);
                     let index = numbers.indexOf(part);
-                    if(index >= 0){
-                        files.push(sampleDir + numberFileNames[index]);
-                    }else{
-                        let digits = part.split('');
-                        digits.forEach(digit => {
-                            index = numbers.indexOf(digit);
-                            if(index >= 0){
-                                files.push(sampleDir + numberFileNames[index]);
-                            }else{
-                                files.push(sampleDir + fallbackSample);
-                                console.error(digit + " not found in available samples");
-                            }
-                        });
-                    }
+                    
+                        if(index >= 0){
+                            files.push(sampleDir + numberFileNames[index]);
+                        }else{
+                            let digits = part.split('');
+                            digits.forEach(digit => {
+                                index = numbers.indexOf(digit);
+                                if(index >= 0){
+                                    if(Math.random() > 0.05){
+                                        files.push(sampleDir + numberFileNames[index]);
+                                    }else{
+                                        files.push(sampleDir + fallbackSample);
+                                    }
+                                }else{
+                                    files.push(sampleDir + fallbackSample);
+                                    console.error(digit + " not found in available samples");
+                                }
+                            });
+                        }
+                    
                 });
     
                 files.push(afterDir + afterFileNames[Math.floor(Math.random() * afterFileNames.length)]);

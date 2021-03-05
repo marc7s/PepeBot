@@ -35,6 +35,8 @@ const chConfig = new CommandHandlerConfig(
             '.recursion/.haskell',
             '.synth',
             '.vibe',
+            '.intro/.kjell',
+            '.kåver/.cover',
             '.pepe',
             '.schema/.kurser [vecka/imorgon]',
             '.vecka',

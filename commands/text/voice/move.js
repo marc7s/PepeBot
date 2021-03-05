@@ -1,7 +1,7 @@
 const { CommandHandler } = require('../../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../../command_handler/command-handler-config');
 const { config } = require('../../../.env.js');
-const { getChannel } = require('../../_helpers/voice.js');
+const { getChannel, isRestrictedChannel } = require('../../_helpers/voice.js');
 
 const chConfig = new CommandHandlerConfig(
     false,
@@ -16,7 +16,8 @@ const chConfig = new CommandHandlerConfig(
     ],
     async (message, cmd, args) => {
         if(message.member.voice.channel){
-            let msg = '';
+            let msg = '', logmsg = '';
+            let underkover = false;
 
             if(args.length >= 1){
                 let fromChannel, toChannel;
@@ -41,8 +42,22 @@ const chConfig = new CommandHandlerConfig(
                     for(const [memberID, member] of fromChannel.members){
                         member.voice.setChannel(toChannel);
                     }
+                    
+                    let from = ' from `' + fromChannel.name + '`';
+                    let to = ' to `' + toChannel.name + '`';
+                    logmsg = 'Moved members' + from + to;
+                    
+                    if(isRestrictedChannel(fromChannel))
+                        from = '';
+                    
+                    if(isRestrictedChannel(toChannel)){
+                        message.delete();
+                        underkover = true;
+                    }
+                        
+                    
+                    msg = 'Moved members' + from + to;
 
-                    msg = 'Moved members from `' + fromChannel.name + '` to `' + toChannel.name + '`';
                 }
                 else{
                     msg = 'Voice channel `' + firstChannelNeedle + '` not found';
@@ -50,8 +65,11 @@ const chConfig = new CommandHandlerConfig(
             }else{
                 msg = 'Missing argument, no voice channel supplied';
             }
-            message.channel.send(msg);
-            console.log(msg);
+            
+            if(!underkover){
+                message.channel.send(msg);
+            }    
+            console.log(logmsg);
             return 'movedMembers';
         }
     });
