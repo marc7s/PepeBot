@@ -71,6 +71,7 @@ const config = {
             "pepeURI": "resources/pepes/",
             "frokenPeterURI": "resources/froken_peter/",
             "lowlifeURI": "resources/peter/lowlife/",
+            "citatURI": "resources/peter/citat/",
             "peterURI": "resources/peter/"
         },
         "links": {

@@ -8,21 +8,23 @@ var synthHandler = require('../commands/voice/music/synth');
 var recursionHandler = require('../commands/voice/music/recursion');
 var visitorsHandler = require('../commands/voice/music/visitors');
 var vibeHandler = require('../commands/voice/music/vibe');
-var introHandler = require('../commands/voice/music/intro');
-var coverHandler = require('../commands/voice/music/cover');
 var skipHandler = require('../commands/voice/music/skip');
-var frokenPeterHandler = require('../commands/voice/misc/froken_peter');
 var voiceHandler = require('../commands/voice/ai/voice');
 
 var bangerReactHandler = require('../commands/text/global/bangerReact');
 var pepeReactHandler = require('../commands/text/global/pepeReact');
 var pingHandler = require('../commands/text/global/ping');
 
-var moveHandler = require('../commands/text/voice/move');
-var leaveHandler = require('../commands/text/voice/leave');
-var teamsHandler = require('../commands/text/voice/teams');
-var scatterHandler = require('../commands/text/voice/scatter');
-var lowlifeHandler = require('../commands/text/voice/lowlife');
+var moveHandler = require('../commands/voice/administrative/move');
+var leaveHandler = require('../commands/voice/misc/leave');
+var teamsHandler = require('../commands/voice/administrative/teams');
+var scatterHandler = require('../commands/voice/administrative/scatter');
+
+var frokenPeterHandler = require('../commands/voice/peter/froken_peter');
+var lowlifeHandler = require('../commands/voice/peter/lowlife');
+var citatHandler = require('../commands/voice/peter/citat');
+var introHandler = require('../commands/voice/peter/intro');
+var coverHandler = require('../commands/voice/peter/cover');
 
 var mkHandler = require('../commands/text/mk');
 var shortCommandsHandler = require('../commands/text/shortCommands');
@@ -50,6 +52,7 @@ class HandlerConfig{
             teamsHandler,
             scatterHandler,
             lowlifeHandler,
+            citatHandler,
             shortCommandsHandler,
             //voiceHandler, -- Removed temporarily until permanent Google Cloud-solution in place
             bangerReactHandler,
@@ -76,6 +79,7 @@ class HandlerConfig{
             teamsHandler,
             scatterHandler,
             lowlifeHandler,
+            citatHandler,
             shortCommandsHandler,
             scheduleHandler,
             //voiceHandler, -- Removed temporarily until permanent Google Cloud-solution in place
