@@ -2,12 +2,16 @@ require('dotenv').config();
 const env = require('./.env.js');
 const path = require('path');
 const { checkHandlers } = require('./configs/handler-config');
+const schedule = require('node-schedule');
+
+
+var birthdayHandler = require('./commands/scheduled/birthday');
 
 
 global.__basedir = path.normalize(__dirname + '/');
 global.lastSongWigwalk = false;
 
-const { Client } = require('discord.js');
+const { Client, Intents } = require('discord.js');
 const fs = require('fs');
 
 if(!fs.existsSync('./cloud-auth.json')){
@@ -23,7 +27,12 @@ logger.add(new logger.transports.Console, {
 });
 logger.level = 'debug';
 
-const bot = new Client();
+const intents = new Intents([
+    Intents.NON_PRIVILEGED,
+    "GUILD_MEMBERS"
+]);
+
+const bot = new Client({ws: { intents }});
 
 bot.once('ready', function (evt) {
     logger.info('Connected');
@@ -35,6 +44,8 @@ bot.once('ready', function (evt) {
 
 bot.login(env.config.discord.token);
 
+// SECOND MINUTE HOUR DAY_OF_MONTH MONTH DAY_OF_WEEK
+schedule.scheduleJob('0 0 0 * * *', () => { birthdayHandler.handle(bot); });
 
 bot.on('message', message => {
     Object.keys(env.config.guilds).forEach(async key => {

@@ -1,7 +1,7 @@
 const { CommandHandler } = require('../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../command_handler/command-handler-config');
 const { config } = require('../../.env.js');
-const { readdirSync } = require('fs');
+const { getRandomImage } = require('../_helpers/files');
 const { MessageAttachment } = require('discord.js');
 
 require('../_helpers/events');
@@ -67,9 +67,8 @@ const chConfig = new CommandHandlerConfig(
                 message.channel.send('**HACKE HACKSPETT HACKE HACKSPETT HACKE HACKSPETT HACKE HACKSPETT**');
                 return 'messageSent';
             case 'pepe':
-                let pepeURI = __basedir + config.bot.URIs.pepeURI;
-                let pepes = readdirSync(pepeURI);
-                let pepe = new MessageAttachment(pepeURI + pepes[Math.floor(Math.random() * pepes.length)]);
+                let randPepe = getRandomImage(config.bot.URIs.pepeURI);
+                const pepe = new MessageAttachment(randPepe);
                 message.channel.send(pepe);
                 return 'messageSent';
             case 'help':

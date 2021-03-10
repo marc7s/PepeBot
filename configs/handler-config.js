@@ -29,6 +29,7 @@ var coverHandler = require('../commands/voice/peter/cover');
 var mkHandler = require('../commands/text/mk');
 var shortCommandsHandler = require('../commands/text/shortCommands');
 var scheduleHandler = require('../commands/text/schedule');
+var infoHandler = require('../commands/text/info');
 
 class HandlerConfig{
     
@@ -54,6 +55,7 @@ class HandlerConfig{
             lowlifeHandler,
             citatHandler,
             shortCommandsHandler,
+            infoHandler,
             //voiceHandler, -- Removed temporarily until permanent Google Cloud-solution in place
             bangerReactHandler,
             pepeReactHandler
@@ -81,6 +83,7 @@ class HandlerConfig{
             lowlifeHandler,
             citatHandler,
             shortCommandsHandler,
+            infoHandler,
             scheduleHandler,
             //voiceHandler, -- Removed temporarily until permanent Google Cloud-solution in place
             bangerReactHandler,
