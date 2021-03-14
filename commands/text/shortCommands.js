@@ -12,7 +12,9 @@ const chConfig = new CommandHandlerConfig(
     [
         config.guilds.frukost.text_channels.schema,
         config.guilds.frukost.text_channels.bot,
-        config.guilds.frukost.text_channels.pepeBot
+        config.guilds.frukost.text_channels.pepeBot,
+        config.guilds.house.text_channels.bot,
+        config.guilds.house.text_channels.botUltra
     ],
     [
         'schemalänk',

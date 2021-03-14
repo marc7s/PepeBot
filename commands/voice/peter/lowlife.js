@@ -62,7 +62,7 @@ const chConfig = new CommandHandlerConfig(
                         
         
                         flames.forEach(flame => {
-                            if(Math.random() >= 0.5){
+                            if(Math.random() >= 0.6){
                                 files.push(flamesDir + flame);
                             }
                         });
