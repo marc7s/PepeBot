@@ -1,4 +1,4 @@
-const { CommandHandler } = require('../../../command_handler/command-handler');
+const { CommandHandler, Action } = require('../../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../../command_handler/command-handler-config');
 const { config } = require('../../../.env.js');
 
@@ -18,7 +18,7 @@ const chConfig = new CommandHandlerConfig(
             .then(() => message.react('🇬'))
             .then(() => message.react('🇪'))
             .then(() => message.react('🇷'));
-            return 'messageReact';
+            return Action.messageReact;
         }
     });
 

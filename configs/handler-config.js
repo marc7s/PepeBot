@@ -1,3 +1,5 @@
+const { Action } = require('../command_handler/command-handler');
+
 var rouletteHandler = require('../commands/voice/music/roulette');
 var boostedHandler = require('../commands/voice/music/boosted');
 var notNerdyHandler = require('../commands/voice/music/notnerdy');
@@ -8,6 +10,7 @@ var synthHandler = require('../commands/voice/music/synth');
 var recursionHandler = require('../commands/voice/music/recursion');
 var visitorsHandler = require('../commands/voice/music/visitors');
 var vibeHandler = require('../commands/voice/music/vibe');
+var svennusHandler = require('../commands/voice/music/svennusSexus');
 var skipHandler = require('../commands/voice/music/skip');
 var voiceHandler = require('../commands/voice/ai/voice');
 
@@ -43,6 +46,7 @@ class HandlerConfig{
             visitorsHandler,
             vibeHandler,
             introHandler,
+            svennusHandler,
             coverHandler,
             pushHandler,
             frokenPeterHandler,
@@ -71,6 +75,7 @@ class HandlerConfig{
             visitorsHandler,
             vibeHandler,
             introHandler,
+            svennusHandler,
             coverHandler,
             pushHandler,
             frokenPeterHandler,
@@ -107,7 +112,7 @@ async function checkHandlers(firstChar, cmd, args, message, guild){
         actions.push(await cmdHandler.handler.handle(firstChar, cmd, args, message, guild));
     }
 
-    if((!actions.includes('playSong') && !actions.includes('skipSong') && !actions.includes('leaveChannel') && !actions.includes('movedMembers')) && wigwalkHandler.handler.config.channels.includes(message.channel.id))
+    if((!actions.includes(Action.playSong) && !actions.includes(Action.skipSong) && !actions.includes(Action.leaveChannel) && !actions.includes(Action.movedMembers)) && wigwalkHandler.handler.config.channels.includes(message.channel.id))
         await wigwalkHandler.handler.handle(firstChar, cmd, args, message, guild);
 }
 

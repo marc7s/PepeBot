@@ -13,6 +13,17 @@ class CommandHandler{
  }
 }
 
+const Action = {
+    playSong : "playSong",
+    skipSong: "skipSong",
+    messageSent: "messageSent",
+    messageReact: "messageReact",
+    movedMembers: "movedMembers",
+    leaveChannel: "leaveChannel",
+    exit: "exit"
+}
+
 module.exports = {
-    CommandHandler
+    CommandHandler,
+    Action
 };

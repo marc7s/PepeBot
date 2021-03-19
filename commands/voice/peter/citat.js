@@ -1,4 +1,4 @@
-const { CommandHandler } = require('../../../command_handler/command-handler');
+const { CommandHandler, Action } = require('../../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../../command_handler/command-handler-config');
 const { config } = require('../../../.env.js');
 const { readdirSync } = require('fs');
@@ -29,7 +29,7 @@ const chConfig = new CommandHandlerConfig(
             message.react('🧠');
             
             await playSong(message.member.voice.channel, citatURI);
-            return 'playSong';
+            return Action.playSong;
         }else{
             let emt  = getMessageEmote(message, config.guilds.frukost.emotes.Sadge);
             message.channel.send('not in voice channel ' + emt);

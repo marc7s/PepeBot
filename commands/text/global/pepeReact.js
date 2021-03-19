@@ -1,4 +1,4 @@
-const { CommandHandler } = require('../../../command_handler/command-handler');
+const { CommandHandler, Action } = require('../../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../../command_handler/command-handler-config');
 const { config } = require('../../../.env.js');
 
@@ -13,7 +13,7 @@ const chConfig = new CommandHandlerConfig(
     async (message, cmd, args) => {
         if (message.content.toLowerCase().includes('pepe')){
             message.react('❤️');
-            return 'messageReact';
+            return Action.messageReact;
         }
     });
 

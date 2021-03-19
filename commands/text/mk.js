@@ -1,4 +1,4 @@
-const { CommandHandler } = require('../../command_handler/command-handler');
+const { CommandHandler, Action } = require('../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../command_handler/command-handler-config');
 const { config } = require('../../.env.js');
 
@@ -15,7 +15,7 @@ const chConfig = new CommandHandlerConfig(
             let excuse = config.guilds.frukost.mk_responses[Math.floor(Math.random() * config.guilds.frukost.mk_responses.length)];
             message.react('😡');
             message.reply(excuse);
-            return 'messageSent';
+            return Action.messageSent;
         }
     });
 

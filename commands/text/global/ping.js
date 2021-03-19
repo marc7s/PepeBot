@@ -1,4 +1,4 @@
-const { CommandHandler } = require('../../../command_handler/command-handler');
+const { CommandHandler, Action } = require('../../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../../command_handler/command-handler-config');
 const { config } = require('../../../.env.js');
 
@@ -12,7 +12,7 @@ const chConfig = new CommandHandlerConfig(
     ],
     async (message, cmd, args) => {
         message.channel.send('Pong!');
-        return 'messageSent';
+        return Action.messageSent;
     });
 
 const handler = new CommandHandler(chConfig);

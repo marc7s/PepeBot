@@ -1,4 +1,4 @@
-const { CommandHandler } = require('../../../command_handler/command-handler');
+const { CommandHandler, Action } = require('../../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../../command_handler/command-handler-config');
 const { config } = require('../../../.env.js');
 const { getChannels } = require('../../_helpers/voice');
@@ -28,7 +28,7 @@ const chConfig = new CommandHandlerConfig(
             let msg = 'Moved members to random channels';
             message.channel.send(msg);
             console.log(msg);
-            return 'movedMembers';
+            return Action.movedMembers;
         }else{
             console.error('scatter: No voice channels found');
         }

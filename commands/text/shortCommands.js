@@ -1,4 +1,4 @@
-const { CommandHandler } = require('../../command_handler/command-handler');
+const { CommandHandler, Action } = require('../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../command_handler/command-handler-config');
 const { config } = require('../../.env.js');
 const { getRandomImage } = require('../_helpers/files');
@@ -54,25 +54,25 @@ const chConfig = new CommandHandlerConfig(
         switch(cmd) {
             case 'schemalänk':
                 message.channel.send(config.bot.links.schema);
-                return 'messageSent';
+                return Action.messageSent;
             case 'vecka':
                 let today = new Date();
                 message.channel.send(today.getWeek());
-                return 'messageSent';
+                return Action.messageSent;
             case 'sektion':
                 message.channel.send('**DATA**');
-                return 'messageSent';
+                return Action.messageSent;
             case 'färg':
                 message.channel.send('**ORANGE**');
-                return 'messageSent';
+                return Action.messageSent;
             case 'skyddshelgon':
                 message.channel.send('**HACKE HACKSPETT HACKE HACKSPETT HACKE HACKSPETT HACKE HACKSPETT**');
-                return 'messageSent';
+                return Action.messageSent;
             case 'pepe':
                 let randPepe = getRandomImage(config.bot.URIs.pepeURI);
                 const pepe = new MessageAttachment(randPepe);
                 message.channel.send(pepe);
-                return 'messageSent';
+                return Action.messageSent;
             case 'help':
             case 'commands':
                 let msg = 'Commands:\n```';
@@ -81,7 +81,7 @@ const chConfig = new CommandHandlerConfig(
                 }
                 msg += '```';
                 message.channel.send(msg);
-                return 'messageSent';
+                return Action.messageSent;
         }
     });
 

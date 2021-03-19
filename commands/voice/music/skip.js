@@ -1,4 +1,4 @@
-const { CommandHandler } = require('../../../command_handler/command-handler');
+const { CommandHandler, Action } = require('../../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../../command_handler/command-handler-config');
 const { config } = require('../../../.env.js');
 
@@ -26,7 +26,7 @@ const chConfig = new CommandHandlerConfig(
                 message.react(emt);
             lastSongWigwalk = false;
             message.member.voice.channel.leave();
-            return 'skipSong';
+            return Action.skipSong;
         }
     });
 

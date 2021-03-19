@@ -1,4 +1,4 @@
-const { CommandHandler } = require('../../../command_handler/command-handler');
+const { CommandHandler, Action } = require('../../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../../command_handler/command-handler-config');
 const { config } = require('../../../.env.js');
 const { shuffleArray } = require('../../_helpers/voice.js');
@@ -50,7 +50,7 @@ const chConfig = new CommandHandlerConfig(
         
         message.channel.send(msg);
         console.log(msg);
-        return 'movedMembers';
+        return Action.movedMembers;
     });
 
 const handler = new CommandHandler(chConfig);

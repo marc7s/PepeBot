@@ -1,4 +1,4 @@
-const { CommandHandler } = require('../../../command_handler/command-handler');
+const { CommandHandler, Action } = require('../../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../../command_handler/command-handler-config');
 const { config } = require('../../../.env.js');
 const { getChannel, isRestrictedChannel } = require('../../_helpers/voice.js');
@@ -39,25 +39,29 @@ const chConfig = new CommandHandlerConfig(
                         toChannel = firstChannel;
                     }
 
-                    for(const [memberID, member] of fromChannel.members){
-                        member.voice.setChannel(toChannel);
-                    }
-                    
-                    let from = ' from `' + fromChannel.name + '`';
-                    let to = ' to `' + toChannel.name + '`';
-                    logmsg = 'Moved members' + from + to;
-                    
-                    if(isRestrictedChannel(fromChannel))
-                        from = '';
-                    
-                    if(isRestrictedChannel(toChannel)){
-                        message.delete();
-                        underkover = true;
-                    }
+                    if(fromChannel != toChannel){
+                        for(const [memberID, member] of fromChannel.members){
+                            member.voice.setChannel(toChannel);
+                        }
                         
-                    
-                    msg = 'Moved members' + from + to;
-
+                        let from = ' from `' + fromChannel.name + '`';
+                        let to = ' to `' + toChannel.name + '`';
+                        logmsg = 'Moved members' + from + to;
+                        
+                        if(isRestrictedChannel(fromChannel))
+                            from = '';
+                        
+                        if(isRestrictedChannel(toChannel)){
+                            message.delete();
+                            underkover = true;
+                        }
+                            
+                        
+                        msg = 'Moved members' + from + to;
+                    }else{
+                        msg = 'You are already in that channel';
+                        logmsg = msg;
+                    }
                 }
                 else{
                     msg = 'Voice channel `' + firstChannelNeedle + '` not found';
@@ -70,7 +74,7 @@ const chConfig = new CommandHandlerConfig(
                 message.channel.send(msg);
             }    
             console.log(logmsg);
-            return 'movedMembers';
+            return Action.movedMembers;
         }
     });
 

@@ -1,8 +1,10 @@
 const { config } = require('../../.env.js');
 const { MessageAttachment } = require('discord.js');
 const { getRandomImage } = require('../_helpers/files');
+const { Action } = require('../../command_handler/command-handler');
 
 function handle(bot){
+    let congratulated = false;
     Object.values(config.guilds).forEach((guildConfig) => {
         if(guildConfig.birthdayChannel){
             console.log('[' + new Date() + '] ' + 'Checking birthdays for ' + guildConfig.config.name + '...');
@@ -28,7 +30,6 @@ function handle(bot){
                                     
                                     channel.send(msg, pepe);
                                     console.log('Congratulated ' + member.user.username + ' on becoming ' + years + ' years old');
-                    
                                 }
                             }
                         }            
@@ -37,6 +38,7 @@ function handle(bot){
             });
         }
     });
+    return (congratulated) ? Action.messageSent : Action.exit;
 }
 
 

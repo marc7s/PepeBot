@@ -1,4 +1,4 @@
-const { CommandHandler } = require('../../../command_handler/command-handler');
+const { CommandHandler, Action } = require('../../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../../command_handler/command-handler-config');
 const { config } = require('../../../.env.js');
 const { readdirSync } = require('fs');
@@ -86,7 +86,7 @@ const chConfig = new CommandHandlerConfig(
                                     setTimeout(async () => {
                                         clearInterval(leaveAfter30);
                                         await playSong(message.member.voice.channel, songURI);
-                                        return 'playSong';
+                                        return Action.playSong;
                                     }, 500);
                                     
                                     
@@ -97,7 +97,7 @@ const chConfig = new CommandHandlerConfig(
                                     let pepes = readdirSync(pepeURI);
                                     let pepe = new MessageAttachment(pepeURI + pepes[Math.floor(Math.random() * pepes.length)]);
                                     message.channel.send(pepe);
-                                    return 'messageSent';
+                                    return Action.messageSent;
                                 }
                             });
 
@@ -122,6 +122,7 @@ const chConfig = new CommandHandlerConfig(
         }else{
             let emt  = getMessageEmote(message, config.bot.emotes.Sadge);
             message.channel.send('not in voice channel ' + emt);
+            return Action.exit;
         }
     });
 

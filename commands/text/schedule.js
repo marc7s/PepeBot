@@ -1,4 +1,4 @@
-const { CommandHandler } = require('../../command_handler/command-handler');
+const { CommandHandler, Action } = require('../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../command_handler/command-handler-config');
 const { config } = require('../../.env.js');
 
@@ -56,7 +56,7 @@ const chConfig = new CommandHandlerConfig(
             }
         });
         console.log('Showed schedule');
-        return 'messageSent';
+        return Action.messageSent;
     });
 
 const handler = new CommandHandler(chConfig);

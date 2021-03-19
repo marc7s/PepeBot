@@ -1,4 +1,4 @@
-const { CommandHandler } = require('../../../command_handler/command-handler');
+const { CommandHandler, Action } = require('../../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../../command_handler/command-handler-config');
 const { config } = require('../../../.env.js');
 const { getUserIdFromMention, shuffleArray } = require('../../_helpers/voice.js');
@@ -74,7 +74,7 @@ const chConfig = new CommandHandlerConfig(
     
                         playSamples(message.guild.channels.cache.get(targetChannel), files);
                         console.log(message.member.displayName + ' scolded ' + targetName);
-                        return 'playSong';
+                        return Action.playSong;
                     }else{
                         msg = 'Target not connected to voice channel';
                     }
@@ -89,7 +89,7 @@ const chConfig = new CommandHandlerConfig(
         }
         message.channel.send(msg);
         console.log(msg);
-        return 'playSong';
+        return Action.exit;
     });
 
 const handler = new CommandHandler(chConfig);
