@@ -5,6 +5,7 @@ const { readdirSync } = require('fs');
 
 const { getMessageEmote } = require('../../_helpers/emotes.js');
 const { playSong } = require('../../_helpers/music.js');
+const { shuffleArray, playSamples } = require('../../_helpers/voice');
 
 const chConfig = new CommandHandlerConfig(
     false,
@@ -19,16 +20,26 @@ const chConfig = new CommandHandlerConfig(
     ],
     async (message, cmd, args) => {
         if(message.member.voice.channel){
-            const allCitat = readdirSync(__basedir + config.bot.URIs.citatURI);
-            
-            let citat = allCitat[Math.floor(Math.random() * allCitat.length)];
-            let citatURI = __basedir + config.bot.URIs.citatURI + citat;
+            let citatDir = __basedir + config.bot.URIs.citatURI;
+            const allCitat = readdirSync(citatDir);
+            let num = 1;
+
+            if(args.length == 1 && (args[0] == parseInt(args[0]))){
+                num = parseInt(args[0]);
+            }
+
+            let citat = [];
+
+            shuffleArray(allCitat);
+            for(let i = 0; i < num && i < allCitat.length; i++){
+                citat.push(citatDir + allCitat[i]);
+            }
             
             lastSongWigwalk = false;
             
             message.react('🧠');
             
-            await playSong(message.member.voice.channel, citatURI);
+            await playSamples(message.member.voice.channel, citat);
             return Action.playSong;
         }else{
             let emt  = getMessageEmote(message, config.guilds.frukost.emotes.Sadge);
