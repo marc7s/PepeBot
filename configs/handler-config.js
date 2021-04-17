@@ -11,6 +11,7 @@ var recursionHandler = require('../commands/voice/music/recursion');
 var visitorsHandler = require('../commands/voice/music/visitors');
 var vibeHandler = require('../commands/voice/music/vibe');
 var svennusHandler = require('../commands/voice/music/svennusSexus');
+var harstylerHandler = require('../commands/voice/music/harstyler');
 var skipHandler = require('../commands/voice/music/skip');
 var voiceHandler = require('../commands/voice/ai/voice');
 
@@ -28,6 +29,7 @@ var lowlifeHandler = require('../commands/voice/peter/lowlife');
 var citatHandler = require('../commands/voice/peter/citat');
 var introHandler = require('../commands/voice/peter/intro');
 var coverHandler = require('../commands/voice/peter/cover');
+var bottenplanHandler = require('../commands/voice/peter/bottenplan');
 
 var mkHandler = require('../commands/text/mk');
 var shortCommandsHandler = require('../commands/text/shortCommands');
@@ -47,7 +49,9 @@ class HandlerConfig{
             vibeHandler,
             introHandler,
             svennusHandler,
+            harstylerHandler,
             coverHandler,
+            bottenplanHandler,
             pushHandler,
             frokenPeterHandler,
             skipHandler,
@@ -76,7 +80,9 @@ class HandlerConfig{
             vibeHandler,
             introHandler,
             svennusHandler,
+            harstylerHandler,
             coverHandler,
+            bottenplanHandler,
             pushHandler,
             frokenPeterHandler,
             skipHandler,

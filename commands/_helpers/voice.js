@@ -3,29 +3,31 @@ const path = require('path');
 const fs = require('fs');
 
 async function playSamples(channel, samples){
-    if(channel.joinable){
-        channel.join().then(connection => {
-            let sampleURI = path.win32.normalize(samples.shift());
-            if(fs.existsSync(sampleURI)){
-                const dispatcher = connection.play(sampleURI).on('finish', async () => {
-                    if(samples.length > 0){
-                        await playSamples(channel, samples);
-                    }else{
-                        dispatcher.destroy();
-                        connection.disconnect();
-                    }
-                }).on('error', console.error);
-            }else{
-                console.error('Error: Sample path does not exist');
-            }     
-        });
-    }else{
-        console.error('Error. No permission to join ' + channel.name);
+    if(samples.length > 0){
+        if(channel.joinable){
+            channel.join().then(connection => {
+                let sampleURI = path.win32.normalize(samples.shift());
+                if(fs.existsSync(sampleURI)){
+                    const dispatcher = connection.play(sampleURI).on('finish', async () => {
+                        if(samples.length > 0){
+                            await playSamples(channel, samples);
+                        }else{
+                            dispatcher.destroy();
+                            connection.disconnect();
+                        }
+                    }).on('error', console.error);
+                }else{
+                    console.error('Error: Sample path does not exist');
+                }     
+            });
+        }else{
+            console.error('Error. No permission to join ' + channel.name);
+        }
     }
 }
 
 function getUserIdFromMention(mention) {
-	if (!mention) return;
+	if (!mention) return false;
 
 	if (mention.startsWith('<@') && mention.endsWith('>')) {
 		mention = mention.slice(2, -1);

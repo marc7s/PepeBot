@@ -11,20 +11,17 @@ const chConfig = new CommandHandlerConfig(
     [
         config.guilds.frukost.text_channels.bot,
         config.guilds.house.text_channels.bot,
-        config.guilds.house.text_channels.botUltra
+        config.guilds.house.text_channels.botUltra,
+        config.guilds.house.text_channels.botUber
     ],
     [
-        'svennus',
-        'sexus',
-        'svennussexus',
-        'peterswing',
-        'sultansofpeter',
-        'direpeter',
-        'peterknopfler'
+        'hårstyler',
+        'petermaria',
+        'harstyler'
     ],
     async (message, cmd, args) => {
         if(message.member.voice.channel){
-            let song = 'Svennus Sexus';
+            let song = 'Hårstyler';
             let songURI = __basedir + config.bot.URIs.songsURI + song + '.wav';
 
             lastSongWigwalk = false;

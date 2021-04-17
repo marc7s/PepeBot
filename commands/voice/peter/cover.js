@@ -11,7 +11,8 @@ const chConfig = new CommandHandlerConfig(
     [
         config.guilds.frukost.text_channels.bot,
         config.guilds.house.text_channels.bot,
-        config.guilds.house.text_channels.botUltra
+        config.guilds.house.text_channels.botUltra,
+        config.guilds.house.text_channels.botUber
     ],
     [
         'kåver',
