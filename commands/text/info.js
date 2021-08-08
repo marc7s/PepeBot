@@ -66,7 +66,7 @@ const chConfig = new CommandHandlerConfig(
                             )
                             .setImage(data.avatarUrl);
                     console.log('Displayed info for ' + data.username);
-                    message.channel.send(embed);
+                    message.channel.send({embeds: [embed]});
                 }else{
                     message.channel.send('User not found');
                 }

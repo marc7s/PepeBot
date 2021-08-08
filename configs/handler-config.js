@@ -36,6 +36,8 @@ var shortCommandsHandler = require('../commands/text/shortCommands');
 var scheduleHandler = require('../commands/text/schedule');
 var infoHandler = require('../commands/text/info');
 
+var optHandler = require('../commands/text/opt');
+
 class HandlerConfig{
     
         static houseHandlers = [
@@ -66,7 +68,8 @@ class HandlerConfig{
             infoHandler,
             //voiceHandler, -- Removed temporarily until permanent Google Cloud-solution in place
             bangerReactHandler,
-            pepeReactHandler
+            pepeReactHandler,
+            optHandler
         ];
 
          static frukostHandlers = [
@@ -99,7 +102,8 @@ class HandlerConfig{
             //voiceHandler, -- Removed temporarily until permanent Google Cloud-solution in place
             bangerReactHandler,
             pepeReactHandler,
-            mkHandler
+            mkHandler,
+            optHandler
         ];
     
     

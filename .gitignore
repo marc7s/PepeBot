@@ -1,3 +1,4 @@
 .env
 cloud-auth.json
 node_modules/
+storage/

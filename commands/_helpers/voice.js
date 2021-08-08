@@ -2,24 +2,59 @@ const { config } = require('../../.env.js');
 const path = require('path');
 const fs = require('fs');
 
+const {
+	joinVoiceChannel,
+	createAudioPlayer,
+	createAudioResource,
+	entersState,
+	StreamType,
+	AudioPlayerStatus,
+	VoiceConnectionStatus,
+} = require('@discordjs/voice');
+
 async function playSamples(channel, samples){
     if(samples.length > 0){
         if(channel.joinable){
-            channel.join().then(connection => {
-                let sampleURI = path.win32.normalize(samples.shift());
-                if(fs.existsSync(sampleURI)){
-                    const dispatcher = connection.play(sampleURI).on('finish', async () => {
-                        if(samples.length > 0){
-                            await playSamples(channel, samples);
-                        }else{
-                            dispatcher.destroy();
-                            connection.disconnect();
+            let sampleURI = path.win32.normalize(samples.shift());
+            if(fs.existsSync(sampleURI)){
+                const player = createAudioPlayer();
+                
+                const connection = joinVoiceChannel({
+                    channelId: channel.id,
+                    guildId: channel.guild.id,
+                    adapterCreator: channel.guild.voiceAdapterCreator
+                });
+
+                await entersState(connection, VoiceConnectionStatus.Ready, 30e3);
+
+                connection.subscribe(player);
+                
+                let resource = createAudioResource(sampleURI, {
+                    inputType: StreamType.Arbitrary
+                });
+                
+                player.play(resource);
+
+                await entersState(player, AudioPlayerStatus.Playing, 5e3);
+
+                player.on(AudioPlayerStatus.Idle, async () => {
+                    if(samples.length > 0){
+                        sampleURI = path.win32.normalize(samples.shift());
+                        if(fs.existsSync(sampleURI)){
+                            resource = createAudioResource(sampleURI, {
+                                inputType: StreamType.Arbitrary
+                            });
+                            player.play(resource);
+                            await entersState(player, AudioPlayerStatus.Playing, 5e3);
                         }
-                    }).on('error', console.error);
-                }else{
-                    console.error('Error: Sample path does not exist');
-                }     
-            });
+                    }else{
+                        player.stop();
+                        connection.disconnect();
+                    }
+                });
+            }else{
+                console.error('Error: Sample path does not exist');
+            }     
         }else{
             console.error('Error. No permission to join ' + channel.name);
         }

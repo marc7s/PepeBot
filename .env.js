@@ -72,17 +72,21 @@ const config = {
             "frokenPeterURI": "resources/froken_peter/",
             "lowlifeURI": "resources/peter/lowlife/",
             "citatURI": "resources/peter/citat/",
-            "peterURI": "resources/peter/"
+            "peterURI": "resources/peter/",
+            "optInsURI": "storage/birthday_optins.json",
+            "defaultOptInsURI": "storage/default_birthday_optins.json"
         },
         "links": {
             "schema": "https://cloud.timeedit.net/chalmers/web/public/ri1Y93ygZ05ZZQQ1X75v5Y075Q45x4966g080YQQ617.html",
             "wigwalk": "https://www.youtube.com/watch?v=v4-3a6FUOxg"
         },
         "presence": {
-            "activity": {
-                "name": "nakna pepes",
-                "type": "WATCHING"
-            }
+            "activities": [
+                {
+                    "name": "nakna pepes",
+                    "type": "WATCHING"
+                }
+            ]
         }
     },
     "guilds": guilds
