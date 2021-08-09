@@ -16,7 +16,7 @@ async function handle(bot){
                             let date = new Date(member.user.createdAt);
                             let today = new Date();
                 
-                            if(date.getMonth() == today.getMonth() && date.getDate() == today.getDate() || member.id == "262937488660758528"){
+                            if(date.getMonth() == today.getMonth() && date.getDate() == today.getDate()){
                                 if(guildConfig.config.id == member.guild.id && guildConfig.birthdayChannel){
                                     let optinsPath = config.bot.URIs.optInsURI;
                                     let defaultOptinsPath = config.bot.URIs.defaultOptInsURI;
