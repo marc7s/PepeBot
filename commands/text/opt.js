@@ -37,7 +37,10 @@ const chConfig = new CommandHandlerConfig(
 						}
 					]),
 			);
-        await message.reply({content: 'What do you want to opt in or out of?', components: [row]});
+        await message.react('🇩');
+        await message.react('🇲');
+        await message.react('👀');
+        await message.author.send({content: 'What do you want to opt in or out of?', components: [row]});
     });
 
 const handler = new CommandHandler(chConfig);

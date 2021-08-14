@@ -61,20 +61,22 @@ locker.lock().then(() => {
     schedule.scheduleJob('0 0 0 * * *', () => { birthdayHandler.handle(bot); });
 
     bot.on('messageCreate', message => {
-        Object.keys(env.config.guilds).forEach(async key => {
-            let guild = env.config.guilds[key];
-            if(guild.config.id == message.guild.id){
+        if(message.channel.type !== "DM"){
+            Object.keys(env.config.guilds).forEach(async key => {
+                let guild = env.config.guilds[key];
+                if(guild.config.id == message.guild.id){
 
-                const cmdChar = guild.config.cmdChar;
-                const cmdCharLen = cmdChar.length;
-                let args = message.content.substring(cmdCharLen).split(' ');
-                let firstChar = message.content.substring(0, cmdCharLen);
-                let cmd = args[0];
-                args.shift();
+                    const cmdChar = guild.config.cmdChar;
+                    const cmdCharLen = cmdChar.length;
+                    let args = message.content.substring(cmdCharLen).split(' ');
+                    let firstChar = message.content.substring(0, cmdCharLen);
+                    let cmd = args[0];
+                    args.shift();
 
-                checkHandlers(firstChar, cmd, args, message, guild);            
-            }
-        });
+                    checkHandlers(firstChar, cmd, args, message, guild);            
+                }
+            });
+        }
     });
 
     bot.on('interactionCreate', async interaction => {
