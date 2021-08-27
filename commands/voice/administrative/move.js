@@ -1,7 +1,7 @@
 const { CommandHandler, Action } = require('../../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../../command_handler/command-handler-config');
 const { config } = require('../../../.env.js');
-const { getChannel, isRestrictedChannel } = require('../../_helpers/voice.js');
+const { getChannel, isRestrictedChannel, ChannelType } = require('../../_helpers/voice.js');
 
 const chConfig = new CommandHandlerConfig(
     false,
@@ -23,12 +23,12 @@ const chConfig = new CommandHandlerConfig(
             if(args.length >= 1){
                 let fromChannel, toChannel;
                 let firstChannelNeedle = args[0];
-                let firstChannel = getChannel(message.guild, firstChannelNeedle, 'voice');
-                
+                let firstChannel = await getChannel(message.guild, firstChannelNeedle, ChannelType.VOICE);
+
                 if(firstChannel){
                     if(args.length >= 2){
                         let secondChannelNeedle = args[1];
-                        let secondChannel = getChannel(message.guild, secondChannelNeedle, 'voice');
+                        let secondChannel = await getChannel(message.guild, secondChannelNeedle, ChannelType.VOICE);
                         if(secondChannel){
                             fromChannel = firstChannel;
                             toChannel = secondChannel;
@@ -42,7 +42,7 @@ const chConfig = new CommandHandlerConfig(
 
                     if(fromChannel != toChannel){
                         for(const [memberID, member] of fromChannel.members){
-                            member.voice.setChannel(toChannel);
+                            member.voice.setChannel(toChannel.id).catch(err => console.error(err));
                         }
                         
                         let from = ' from `' + fromChannel.name + '`';

@@ -1,14 +1,15 @@
 const { CommandHandler, Action } = require('../../../command_handler/command-handler');
 const { CommandHandlerConfig } = require('../../../command_handler/command-handler-config');
 const { config } = require('../../../.env.js');
-const { getChannels } = require('../../_helpers/voice');
+const { getChannels, ChannelType } = require('../../_helpers/voice');
 
 const chConfig = new CommandHandlerConfig(
     false,
     false,
     [
         config.guilds.frukost.text_channels.voice,
-        config.guilds.house.text_channels.botUltra
+        config.guilds.house.text_channels.botUltra,
+        config.guilds.house.text_channels.botUber
     ],
     [
         'scatter'
@@ -17,7 +18,7 @@ const chConfig = new CommandHandlerConfig(
         let old_vc = message.member.voice.channel;
         let channels = [];
 
-        channels = getChannels(message.guild, 'voice');
+        channels = await getChannels(message.guild, ChannelType.VOICE);
         if(channels){
             let vcKeys = Array.from(channels.keys());
         

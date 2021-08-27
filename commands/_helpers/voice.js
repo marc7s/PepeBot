@@ -91,28 +91,31 @@ function channelCompareString(channel){
     return channel.replace(/\s+/, '').toLowerCase();
 }
 
-function getChannel(guild, needle, type){
-    return guild.channels.cache.find(channel => {
-        return channel.type == type && isChannel(channel.name, needle);
-    });
+async function getChannel(guild, needle, type){
+    return guild.channels.cache.find(ch => { return ch.name.toLowerCase() == needle.toLowerCase() && ch.type == type });
 }
 
 function getChannels(guild, type){
-    return guild.channels.cache.filter(channel => {
-        return channel.type == type;
-    });
+    return guild.channels.cache.filter(channel => channel.type == type);
 }
 
 function isRestrictedChannel(channel){
     let isPrivate = false;
 
-    for(let [id, perm] of channel.permissionOverwrites){
-        if(perm.deny.has("VIEW_CHANNEL")){
-            isPrivate = true;
-            break;
+    if(channel.permissionOverwrites){
+        for(let [id, perm] of channel.permissionOverwrites.cache){
+            if(perm.deny.has("VIEW_CHANNEL")){
+                isPrivate = true;
+                break;
+            }
         }
     }
     return isPrivate;
+}
+
+const ChannelType = {
+    VOICE: 'GUILD_VOICE',
+    TEXT: 'GUILD_TEXT'
 }
 
 module.exports = {
@@ -121,5 +124,6 @@ module.exports = {
     shuffleArray,
     getChannel,
     getChannels,
-    isRestrictedChannel
+    isRestrictedChannel,
+    ChannelType
 };
