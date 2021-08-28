@@ -92,7 +92,7 @@ function channelCompareString(channel){
 }
 
 async function getChannel(guild, needle, type){
-    return guild.channels.cache.find(ch => { return ch.name.toLowerCase() == needle.toLowerCase() && ch.type == type });
+    return guild.channels.cache.find(ch => { return isChannel(ch.name, needle) && ch.type == type });
 }
 
 function getChannels(guild, type){
